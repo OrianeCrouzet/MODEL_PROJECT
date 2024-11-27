@@ -53,6 +53,7 @@ Matrix* generate_random_matrix(Matrix* mat) { //O(mn) où m = mat->rows et n = m
         for (int i = 0; i < mat->rows; i++) {
             for (int j = 0; j < mat->cols; j++) {
                 mat->m[i][j] = (rand() / (double)RAND_MAX) * 2.0 - 1.0;
+                //mat->m[i][j] = (double)rand() / RAND_MAX * 2.0 - 1.0;;
             }
         }
         return mat;
@@ -78,7 +79,8 @@ Matrix* createIdentity(int size) { // O(n) où n = size
 void generate_random_matrix_bounded(Matrix* matrix, int min_value, int max_value) { //O(mn) où m = mat->rows et n = mat->cols
     for (int i = 0; i < matrix->rows; i++) {
         for (int j = 0; j < matrix->cols; j++) {
-            matrix->m[i][j] = min_value + rand() % (max_value - min_value + 1);
+            //matrix->m[i][j] = min_value + (double) rand() % (max_value - min_value + 1);
+            matrix->m[i][j] = min_value + (double) rand() / RAND_MAX * (max_value - min_value);
         }
     }
 }
@@ -100,8 +102,45 @@ void free_matrix(Matrix* mat) { //O(n) où n = mat->rows
         free(mat->m[i]);
     }
     free(mat->m);
+    free(mat);
 }
 
+// Addition de deux matrices
+Matrix* addMatrices(Matrix* A, Matrix* B) { //O(nm) où n = A->rows and n = A->cols
+    if (A->cols != B->cols || A->rows != B->rows) {
+        fprintf(stderr, "Matrixes dimensions are not compatible with addition\n");
+        exit(EXIT_FAILURE);
+    }
+
+    //Créer la matrice résultat C de taille A.row x A.col
+    Matrix* result = create_matrix(A->rows, A->cols);
+
+    for (int i = 0; i < A->rows; i++) {
+        for (int j = 0; j < A->cols; j++) {
+            result->m[i][j] = A->m[i][j] + B->m[i][j];
+        }
+    }
+    return result;
+}
+
+// Soustraction de deux matrices
+Matrix* subtractMatrices(Matrix* A, Matrix* B) { //O(nm) où n = A->rows and n = A->cols
+    if (A->cols != B->cols || A->rows != B->rows) {
+        fprintf(stderr, "Matrixes dimensions are not compatible with subtraction\n");
+        exit(EXIT_FAILURE);
+    }
+
+    //Créer la matrice résultat C de taille A.row x A.col
+    Matrix* result = create_matrix(A->rows, A->cols);
+
+    for (int i = 0; i < A->rows; i++) {
+        for (int j = 0; j < A->cols; j++) {
+            result->m[i][j] = A->m[i][j] - B->m[i][j];
+        }
+    }
+
+    return result;
+}
 
 
 //Fonction pour calculer la matrice C =A*B où A=n*m et B=m*q
@@ -125,7 +164,7 @@ Matrix* naive_matrix_multiplication(Matrix* A, Matrix* B) { // O(mnp) où m = A-
 }
 
 // Fonction de recherche du maximum dans une matrice :
-Pair searchForMax(Matrix* matrix, int size) {
+Pair searchForMax(Matrix* matrix, int size) { //O(n²) où n = size
     Pair pair;
     double max = matrix->m[0][0];
     pair.row = 0; pair.col = 0;

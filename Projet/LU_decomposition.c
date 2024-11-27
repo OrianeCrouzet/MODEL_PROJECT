@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "LU_Decomposition.h"
-#include "MatrixOperations.c"
+#include "MatrixOperations.h"
 
 /* 
 Soustrait à une ligne d'une matrixe une autre ligne multipliée par un double quelconque.
@@ -53,7 +53,7 @@ void LU_facorization(Matrix* L, Matrix* U) {
 
 }
 
-int main() {
+int main1() {
     int rows = 4, cols = 4;
 
     // Créer une matrice de 3 lignes et 4 colonnes
