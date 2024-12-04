@@ -16,4 +16,4 @@ void getElapsedTime(Chronometer* chrono);
 
 void writeElapsedTimeToCSV(Chronometer* chrono, const char* filename, const char* label);
 
-#endif // CHRONOMETER_H
+#endif // CHRONOMETER_H //
