@@ -4,6 +4,7 @@
 #include "MatrixOperations.h"
 #include "Strassen_inversion.h"
 #include "LU_Decomposition.h"
+#include "StrassenProduct.h"
 
 
 // Vérifie si n est une puissance de 2
@@ -97,7 +98,7 @@ void matrix_inversion(Matrix* A, Matrix* invA){ // O(n^3) n = A->rows
 }
 
 
-Matrix* strassen_inverse(Matrix* A) { // O(n^w), with 2 < w < 3.
+Matrix* strassen_inversion_naive_product(Matrix* A) { // O(n^w), with 2 < w < 3.
     int originalSize = A ->rows;
 
     // Remplit la matrice à la taille 2^k la plus proche
@@ -135,7 +136,7 @@ Matrix* strassen_inverse(Matrix* A) { // O(n^w), with 2 < w < 3.
     }
 
     // Step 1: Compute e = a^-1 recursively
-    Matrix* e = strassen_inverse(a);
+    Matrix* e = strassen_inversion_naive_product(a);
     // printf("e:\n");
     // print_matrix(e);
 
@@ -149,7 +150,7 @@ Matrix* strassen_inverse(Matrix* A) { // O(n^w), with 2 < w < 3.
 
 
     // Step 3:Compute t = Z^-1 recursively.
-    Matrix* t = strassen_inverse(Z);
+    Matrix* t = strassen_inversion_naive_product(Z);
     // printf("t:\n");
     // print_matrix(t);
 
@@ -225,6 +226,134 @@ Matrix* strassen_inverse(Matrix* A) { // O(n^w), with 2 < w < 3.
     return res_unpad;
 }
 
+Matrix* strassen_inversion_strassen_product(Matrix* A) { 
+    int originalSize = A ->rows;
+
+    // Remplit la matrice à la taille 2^k la plus proche
+    Matrix* pad = pad_matrix(A);
+
+    int n = pad->rows;
+
+    // Creer un matrice inverse de A
+    Matrix* res = create_matrix(n,n);
+    if (n == 1){
+        if(pad->m[0][0]==0.0){
+            free_matrix(res);
+            return pad;
+        }
+        res->m[0][0]=1/pad->m[0][0];
+        free_matrix(pad);
+        return res;
+    }
+    
+    int newSize = n / 2;
+
+    // Split the matrix A into 4 submatrices a, b, c, d
+    Matrix* a = create_matrix(newSize,newSize);
+    Matrix* b = create_matrix(newSize,newSize);
+    Matrix* c = create_matrix(newSize,newSize);
+    Matrix* d = create_matrix(newSize,newSize);
+
+    for(int i = 0; i < newSize; i++){
+        for(int j = 0; j < newSize; j++){
+            a->m[i][j] = pad->m[i][j];
+            b->m[i][j] = pad->m[i][j+newSize];
+            c->m[i][j] = pad->m[i+newSize][j];
+            d->m[i][j] = pad->m[i+newSize][j+newSize];
+        }
+    }
+
+    // Step 1: Compute e = a^-1 recursively
+    Matrix* e = strassen_inversion_strassen_product(a);
+    // printf("e:\n");
+    // print_matrix(e);
+
+    // Step 2: Compute Z = d - ceb
+    Matrix* tmp1 = strassen_product(c,e);
+    Matrix* tmp2 = strassen_product(tmp1,b);
+    Matrix* Z = subtractMatrices(d,tmp2);
+
+    // printf("Z:\n");
+    // print_matrix(Z);
+
+
+    // Step 3:Compute t = Z^-1 recursively.
+    Matrix* t = strassen_inversion_strassen_product(Z);
+    // printf("t:\n");
+    // print_matrix(t);
+
+    // Step 4:Compute y = -ebt, z = -tce, x = e + ebtce.
+
+    // y = -ebt
+    Matrix* tmp3 = strassen_product(e,b);
+    Matrix* y = strassen_product(tmp3,t);
+    for (int i = 0; i < newSize; i++) {
+        for (int j = 0; j < newSize; j++) {
+            y->m[i][j] = -y->m[i][j]; // y = -y
+        }
+    }
+    // printf("y:\n");
+    // print_matrix(y);
+
+    // z = -tce
+    Matrix* tmp4 = strassen_product(t,c);
+    Matrix* z = strassen_product(tmp4,e);
+    for (int i = 0; i < newSize; i++) {
+        for (int j = 0; j < newSize; j++) {
+            z->m[i][j] = -z->m[i][j]; // y = -y
+        }
+    }
+    // printf("z:\n");
+    // print_matrix(z);
+
+
+    // x = e + ebtce
+    Matrix* tmp5 = strassen_product(e,b);
+    Matrix* tmp6 = strassen_product(tmp5,t);
+    Matrix* tmp7 = strassen_product(tmp6,c);
+    Matrix* tmp8 = strassen_product(tmp7,e);
+    Matrix* x = addMatrices(e,tmp8);
+    // printf("x:\n");
+    // print_matrix(x);
+
+    // Fusionner x, y, z, t en A_inv
+    for(int i = 0; i < newSize; i++){
+        for(int j = 0; j < newSize; j++){
+            res->m[i][j] = x->m[i][j];
+            res->m[i][j+newSize] = y->m[i][j];
+            res->m[i+newSize][j] = z->m[i][j];
+            res->m[i+newSize][j+newSize] = t->m[i][j];
+        }
+    }
+    // printf("\ninv de mat:\n");
+    // print_matrix(res);
+
+    Matrix* res_unpad = unpad_matrix(res,originalSize);
+    // Libérer la mémoire
+    free_matrix(pad);
+    free_matrix(a);
+    free_matrix(b);
+    free_matrix(c);
+    free_matrix(d);
+    free_matrix(e);
+    free_matrix(Z);
+    free_matrix(t);
+    free_matrix(tmp1);
+    free_matrix(tmp2);
+    free_matrix(tmp3);
+    free_matrix(tmp4);
+    free_matrix(tmp5);
+    free_matrix(tmp6);
+    free_matrix(tmp7);
+    free_matrix(tmp8);
+    free_matrix(x);
+    free_matrix(y);
+    free_matrix(z);
+    free_matrix(res);
+
+    return res_unpad;
+}
+
 int main3(){
     int rows = 4, cols = 4;
 
@@ -245,7 +374,7 @@ int main3(){
     print_matrix(invM);
 
     printf("\nl'inversion de Matrice A utilisé Algo Strassen\n");
-    Matrix* res = strassen_inverse(M);
+    Matrix* res = strassen_inversion_naive_product(M);
     print_matrix(res); 
     return 0;
 }
