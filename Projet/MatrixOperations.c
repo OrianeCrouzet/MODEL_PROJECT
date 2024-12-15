@@ -180,6 +180,19 @@ Pair searchForMax(Matrix* matrix, int size) { //O(n²) où n = size
     return pair;
 }
 
+// Fonction pour découper une matrice en sous-matrices
+void splitMatrix(Matrix* A, Matrix* A11, Matrix* A12, Matrix* A21, Matrix* A22) {
+    int newSize = A->rows / 2;
+    for (int i = 0; i < newSize; i++) {
+        for (int j = 0; j < newSize; j++) {
+            A11->m[i][j] = A->m[i][j];
+            A12->m[i][j] = A->m[i][j + newSize];
+            A21->m[i][j] = A->m[i + newSize][j];
+            A22->m[i][j] = A->m[i + newSize][j + newSize];
+        }
+    }
+}
+
 
 // Fonctions de Permutations :
 

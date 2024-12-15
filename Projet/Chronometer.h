@@ -25,8 +25,8 @@ char* getLabel(Chronometer* chrono) {
 void startChronometer(Chronometer* chrono);
 void EndChronometer(Chronometer* chrono);
 
-void getElapsedTime(Chronometer* chrono);
+clock_t getElapsedTime(Chronometer* chrono);
 
-void writeElapsedTimeToCSV(Chronometer* chrono, const char* filename, const char* label);
+void writeElapsedTimeToCSV(Chronometer** chronos, int count, const char* filename, const char* label);
 
 #endif // CHRONOMETER_H

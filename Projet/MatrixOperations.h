@@ -44,4 +44,7 @@ Matrix* naive_matrix_multiplication(Matrix* A, Matrix* B);
 // Maximum d'une matrice
 Pair searchForMax(Matrix* matrix, int size);
 
+// Fonction pour découper une matrice en sous-matrices
+void splitMatrix(Matrix* A, Matrix* A11, Matrix* A12, Matrix* A21, Matrix* A22);
+
 #endif // MATRIX_OPERATIONS_H
