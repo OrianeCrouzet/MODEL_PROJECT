@@ -14,6 +14,9 @@ LU_Decomposition.o: LU_Decomposition.c LU_Decomposition.h MatrixOperations.o
 MatrixOperations.o: MatrixOperations.c MatrixOperations.h
 	gcc -Wall -c MatrixOperations.c
 
+StrassenProduct.o: StrassenProduct.c StrassenProduct.h
+	gcc -Wall -c StrassenProduct.c
+
 clean:
 	rm -f  main  *.o
 
