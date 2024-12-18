@@ -58,7 +58,7 @@ void writeElapsedTimeToCSV(Chronometer** chronos, int count, const char* filenam
     }
 
     // Écrire le label
-    fprintf(file, "Tailles,%s\n", label);
+    fprintf(file, "Tailles,%s (ms)\n", label);
 
     // Parcourir la liste des chronomètres
     for (int i = 0; i < count; ++i) {

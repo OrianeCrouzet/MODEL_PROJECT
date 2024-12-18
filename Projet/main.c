@@ -108,5 +108,5 @@ int main(){
 int main() {
     srand(time(NULL));  // Initialise la graine de nombre aléatoire
 
-    measure_NaiveMatrixMultiplication(100, "MultNaive.csv");
+    measure_NaiveMatrixMultiplication(1000, "MultNaive.csv");
 }
