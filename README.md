@@ -1,5 +1,11 @@
 # Implementation project: Model
 
+### Composition du groupe
+- CIDERE Taryck 21400635
+- CROUZET Oriane 21414555
+- CHEN Shiyao 28707756
+
+
 **Langage:**  
 Langage du projet en C.  
 
