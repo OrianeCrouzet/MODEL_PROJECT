@@ -74,7 +74,7 @@ void writeElapsedTimeToCSV(Chronometer** chronos, int count, const char* filenam
         double elapsedTime = (double)(chrono->end - chrono->start) / CLOCKS_PER_SEC * 1000.0;
 
         // Ajouter le temps dans le fichier
-        fprintf(file, "%.2f\n", elapsedTime);
+        fprintf(file, "%d,%.2f\n", i,elapsedTime);
     }
 
     // Ligne vide pour séparer les groupes (facultatif)

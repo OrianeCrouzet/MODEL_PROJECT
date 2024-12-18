@@ -5,6 +5,7 @@ Etudiants :
 CIDERE Taryck 21400635
 
 */
+#include <stdio.h>
 
 #include "MeasureComplexity.h"
 #include "Chronometer.h"
