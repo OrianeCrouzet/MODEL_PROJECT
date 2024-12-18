@@ -46,7 +46,7 @@ void measure_NaiveMatrixMultiplication(int n, char* fileName) {
     // FIN mesures de temps
 
     // Ecriture des temps :
-    writeElapsedTimeToCSV(chronos, n, fileName, "Multiplication Naive");
+    writeElapsedTimeToCSV(chronos, n, fileName, "Temps");
 
     // Libération mémoire des chronos
     for (int i = 0; i < n; ++i) {
