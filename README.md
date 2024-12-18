@@ -2,8 +2,8 @@
 
 **Langage:**  
 Langage du projet en C.
+Ce projet implémente une gamme d'algorithmes pour matrices, comprenant des approches naïves ainsi que des algorithmes optimisés tels que la méthode de Strassen. Il inclut des fonctions pour la multiplication matricielle, la décomposition LU et l'inversion matricielle, basées sur ces différentes techniques.
 
-Ce projet a pour objectif d'implémenter différents algorithmes de traitement de matrices en langage C, incluant la multiplication matricielle, la décomposition LU ainsi que l'inversion, en utilisant différentes méthodes telles que la méthode naïve et l'algorithme de Strassen. Les performances de ces algorithmes seront évaluées et comparées sur des matrices de tailles variées, avec des coefficients à virgule flottante dans l'intervalle [-1, 1].
-
+Ce fichier README.md explique comment compiler et exécuter le code du projet, ainsi qu'une brève description de chaque fichier. Veuillez suivre les instructions ci-dessous pour configurer l'environnement et tester le programme.
 
 
