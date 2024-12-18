@@ -10,17 +10,9 @@ typedef struct Chronometer {
     char* label;
 } Chronometer;
 
-void setLabel(Chronometer* chrono, char* label) {
-    if (chrono) {
-        chrono->label = label;
-    }
-}
+void setLabel(Chronometer* chrono, char* label);
 
-char* getLabel(Chronometer* chrono) {
-    if (chrono) {
-
-    }
-}
+char* getLabel(Chronometer* chrono);
 
 void startChronometer(Chronometer* chrono);
 void EndChronometer(Chronometer* chrono);

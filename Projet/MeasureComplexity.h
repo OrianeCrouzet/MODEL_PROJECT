@@ -12,8 +12,7 @@
 */
 
 // Mesure le temps d'exécution de la multiplication naive
-void measure_NaiveMatrixMultiplication(int n, char* fileName) {
-    //
-}
+void measure_NaiveMatrixMultiplication(int n, char* fileName);
+void measure_NaiveLUDecomposition(int n, char* fileName);
 
 #endif // MEASURE_COMPLEXITY_H

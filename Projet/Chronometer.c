@@ -14,6 +14,19 @@ void EndChronometer(Chronometer* chrono) {
     }
 }
 
+void setLabel(Chronometer* chrono, char* label) {
+    if (chrono) {
+        chrono->label = label;
+    }
+}
+
+char* getLabel(Chronometer* chrono) {
+    if (chrono) {
+        return chrono->label;
+    }
+    return NULL;
+}
+
 // Donne le temps écoulé entre le début et la fin du chronomètre
 clock_t getElapsedTime(Chronometer* chrono) {
     if (chrono && chrono->end) {
