@@ -44,7 +44,7 @@ void measure_NaiveMatrixMultiplication(int n, char* fileName) {
         startChronometer(chrono);
         naive_matrix_multiplication(A, B);
         EndChronometer(chrono);
-
+        // printf("i = %d\n", i);
         // Libération de la mémoire
         free_matrix(A);
         free_matrix(B);
@@ -85,6 +85,7 @@ void measure_NaiveLUDecomposition(int n, char* fileName) {
         startChronometer(chrono);
         LU_facorization(A, B);
         EndChronometer(chrono);
+        // printf("i = %d\n", i);
 
         // Libération de la mémoire
         free_matrix(A);
@@ -126,7 +127,7 @@ void measure_StrassenMatrixMultiplication(int n, char* fileName) {
         startChronometer(chrono);
         strassen_product(A, B);
         EndChronometer(chrono);
-
+        // printf("i =%d \n",i);
         // Libération de la mémoire
         free_matrix(A);
         free_matrix(B);
@@ -167,7 +168,7 @@ void measure_LUMatrixInversion(int n, char* fileName) {
         startChronometer(chrono);
         matrix_inversion(A, B);
         EndChronometer(chrono);
-
+        // printf("i = %d\n",i);
         // Libération de la mémoire
         free_matrix(A);
         free_matrix(B);
@@ -206,6 +207,7 @@ void measure_NaiveMatrixInversion(int n, char* fileName) {
         startChronometer(chrono);
         strassen_inversion_naive_product(A);
         EndChronometer(chrono);
+        // printf("i = %d\n", i);
 
         // Libération de la mémoire
         free_matrix(A);
@@ -240,11 +242,10 @@ void measure_StrassenMatrixInversion(int n, char* fileName) {
 
         Matrix* A = create_matrix(i+1, i+1);
         generate_random_matrix(A);
-
         startChronometer(chrono);
         strassen_inversion_strassen_product(A);
         EndChronometer(chrono);
-
+        // printf("i =%d \n",i);
         // Libération de la mémoire
         free_matrix(A);
     }

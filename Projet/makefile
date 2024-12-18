@@ -1,16 +1,16 @@
 all: main
 
-main: main.o MatrixOperations.o LU_Decomposition.o Strassen_inversion.o Chronometer.o MeasureComplexity.o StrassenProduct.o
-	gcc -Wall -o main main.o MatrixOperations.o LU_Decomposition.o Strassen_inversion.o Chronometer.o MeasureComplexity.o StrassenProduct.o
+main: main.o MatrixOperations.o LU_decomposition.o strassen_inversion.o Chronometer.o MeasureComplexity.o StrassenProduct.o
+	gcc -Wall -o main main.o MatrixOperations.o LU_decomposition.o strassen_inversion.o Chronometer.o MeasureComplexity.o StrassenProduct.o
 
 main.o: main.c MatrixOperations.h LU_Decomposition.h Strassen_inversion.h Chronometer.h MeasureComplexity.h StrassenProduct.h
 	gcc -Wall -c main.c
 
-Strassen_inversion.o: Strassen_inversion.c Strassen_inversion.h LU_Decomposition.o MatrixOperations.o
-	gcc -Wall  -c Strassen_inversion.c
+strassen_inversion.o: strassen_inversion.c Strassen_inversion.h LU_decomposition.o MatrixOperations.o
+	gcc -Wall  -c strassen_inversion.c
 
-LU_Decomposition.o: LU_Decomposition.c LU_Decomposition.h MatrixOperations.o
-	gcc -Wall -c LU_Decomposition.c
+LU_decomposition.o: LU_decomposition.c LU_Decomposition.h MatrixOperations.o
+	gcc -Wall -c LU_decomposition.c
 
 MatrixOperations.o: MatrixOperations.c MatrixOperations.h
 	gcc -Wall -c MatrixOperations.c
