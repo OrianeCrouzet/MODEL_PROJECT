@@ -5,8 +5,9 @@
 #include "MatrixOperations.h"
 #include "LU_Decomposition.h"
 #include "Strassen_inversion.h"
+#include "MeasureComplexity.h"
 
-
+/*
 int main(){
     printf("***************** naive_matrix_multiplicationTest ****************\n");
     srand(time(NULL));  // Initialise la graine de nombre aléatoire
@@ -93,4 +94,11 @@ int main(){
 
     
     return 0;
+}
+*/
+
+int main() {
+    srand(time(NULL));  // Initialise la graine de nombre aléatoire
+
+    measure_NaiveMatrixMultiplication(100, "MultNaive.csv");
 }
