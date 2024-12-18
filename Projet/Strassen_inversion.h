@@ -1,3 +1,12 @@
+/*
+PROJET : MODEL 2024-2025
+
+Etudiants :
+CIDERE Taryck 21400635
+
+*/
+
+
 #ifndef STRASSEN_INVERSION_H
 #define STRASSEN_INVERSION_H
 

@@ -1,3 +1,11 @@
+/*
+PROJET : MODEL 2024-2025
+
+Etudiants :
+CIDERE Taryck 21400635
+
+*/
+
 #ifndef LU_DECOMPOSITION_H
 #define LU_DECOMPOSITION_H
 

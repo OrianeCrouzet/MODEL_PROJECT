@@ -1,3 +1,11 @@
+/*
+PROJET : MODEL 2024-2025
+
+Etudiants :
+CIDERE Taryck 21400635
+
+*/
+
 #include "Chronometer.h"
 
 // Commence le chronometre

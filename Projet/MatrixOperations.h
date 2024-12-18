@@ -1,3 +1,11 @@
+/*
+PROJET : MODEL 2024-2025
+
+Etudiants :
+CIDERE Taryck 21400635
+
+*/
+
 #ifndef MATRIX_OPERATIONS_H
 #define MATRIX_OPERATIONS_H
 
