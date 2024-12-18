@@ -21,6 +21,21 @@ CIDERE Taryck 21400635
 
 // Mesure le temps d'exécution de la multiplication naive
 void measure_NaiveMatrixMultiplication(int n, char* fileName);
+
+// Mesure le temps d'exécution de la LU
 void measure_NaiveLUDecomposition(int n, char* fileName);
+
+// Mesure le temps d'exécution de la multiplication strassen
+void measure_StrassenMatrixMultiplication(int n, char* fileName);
+
+// Mesure le temps d'exécution de la inversion par LU 
+void measure_LUMatrixInversion(int n, char* fileName);
+
+// Mesure le temps d'exécution de l'inversion naive
+void measure_NaiveMatrixInversion(int n, char* fileName);
+
+// Mesure le temps d'exécution de l'inversion strassen
+void measure_StrassenMatrixInversion(int n, char* fileName);
+
 
 #endif // MEASURE_COMPLEXITY_H

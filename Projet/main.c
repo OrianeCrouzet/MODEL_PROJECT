@@ -108,5 +108,10 @@ int main(){
 int main() {
     srand(time(NULL));  // Initialise la graine de nombre aléatoire
 
-    measure_NaiveMatrixMultiplication(1000, "MultNaive.csv");
+    measure_NaiveMatrixMultiplication(100, "MultNaive.csv");
+    measure_NaiveMatrixMultiplication(100, "MultStrassen.csv");
+    measure_NaiveLUDecomposition(100, "LUDecomposition.csv");
+    measure_LUMatrixInversion(100, "LUInversion.csv");
+    measure_NaiveMatrixInversion(100, "InvNaive.csv");
+    measure_StrassenMatrixInversion(100, "InvStrassen.csv");
 }
