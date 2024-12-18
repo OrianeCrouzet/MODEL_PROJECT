@@ -3,6 +3,7 @@ PROJET : MODEL 2024-2025
 
 Etudiants :
 CIDERE Taryck 21400635
+CHEN Shiyao 28707756
 
 */
 
